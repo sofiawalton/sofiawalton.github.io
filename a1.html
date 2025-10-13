@@ -9,16 +9,39 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
+
+    <header>
     <h1>Sofia's Assignment 1!</h1>
-    <div class="header">
       <p>Here is all the documentation for assignment 1!<br>
-      <img src="Schematic.jpg" class="Schematic.jpeg" />
-      image of my schematic for the circuit & resistance calculation<br>
-      <img src="blink1.jpeg" class="blink1.jpeg" />
-      image of my 'Blink' circuit, with bread board being connected to Arduino with green wired connected to pin 8, red wire connected to pin 13, yellow wire connected to pin 4, and black wire connected to GND. Resistors and LEDS are in the bread board next to associated wire.<br>
-      Code:
-        <pr>
-          <code>
+      </header>
+
+      <main>
+        <section>
+        <h2>Schematic</h2>
+        <img src="Schematic.jpg" class="Schematic.jpeg" />
+        <p>Image of my schematic for the circuit & resistance calculation.</p>
+        </section>
+
+        <section>
+          <h2>'Blink' Circuit Documentation</h2>
+          <img src="blink1.jpeg" class="blink1.jpeg" />
+          <p>
+            This is my 'Blink' circuit. The breadboard is connected to the Arduino with:
+        <ul>
+          <li>Green wire → pin 8</li>
+          <li>Red wire → pin 13</li>
+          <li>Yellow wire → pin 4</li>
+          <li>Black wire → GND</li>
+        </ul>
+        Resistors and LEDs are placed next to the associated wires.
+          </p>
+        </section>
+
+        <section>
+          <h2>Code</h2>
+          <pre>
+            <code>
+               
         // the setup function runs once when you press reset or power the board<br>
          void setup() { <br>
         // initialize digital pin LED_BUILTIN as an output. <br>
@@ -42,22 +65,46 @@
           digitalWrite(4, LOW);   // turn the yellow LED off by making the voltage LOW<br>
           delay(400);                    // wait for a second<br>
       
-         }<br>
-          </code>
-        </pr>
-         Operation:<br>
-         <video controls>
-         <source src='blink-video.mp4' type="video/mp4">
-         Your browser does not support the video tag.
-        </video>
-        Video of my circuit in action, lighting up 3 LEDs at different times.<br>
-         Answers to Questions:<br>
-         1. <img src="graph.jpeg" class="blink1.jpeg" />
-         Image of my Voltage x Time graph. I chose random numbers when I was initally making the milliseconds for my code which is why I ended up with 500ms for green, 700ms for red, and 400ms for yellow. The graph shows when each of these colors are at high voltage(LED is lit) and at low voltage(LED is off) during the 3200ms duration which I calculated by adding the low voltage and high voltage times for each color: 1000ms (green) +1400ms (red) +800ms (yellow). <br>
-         2. Max amount of current for the Arduino is 200mA and each LED is 20mA so I can blink 10 LEDs independently at a time. <br>
-         4. About 10 to 12 milliseconds is how fast you can blink your LEDs and no longer be able to tell that the LEDs are blinking. <br>
-         5. I used ChatGPT to help me understand how to update my style.css file in order to make the website look organized with my inputted information. <br>
-      </p>
-    </div>
+         }
+            </code></pre>
+          </section>
+
+          <section>
+          <h2>Operation Video</h2>
+           <video controls>
+            <source src='blink-video.mp4' type="video/mp4" />
+             Your browser does not support the video tag.
+           </video>
+            <p>Video of my circuit in action, lighting up 3 LEDs at different times.</p>
+          </section>
+
+          <section>
+            <h2>Questions</h2>
+
+            <h3>1. Voltage x Time Graph</h3>
+            <img src="graph.jpeg" class="blink1.jpeg" />
+            <p>
+              I chose the blink times (500ms, 700ms, 400ms) randomly while writing the code.
+              The graph shows the high (on) and low (off) times for each LED over a 3200ms cycle
+              (1000ms green + 1400ms red + 800ms yellow).
+            </p>
+
+            <h3>2. Max Current</h3>
+            <p>
+              The Arduino can safely supply up to 200mA. Each LED uses about 20mA, so I can blink up to 10 LEDs independently.
+            </p>
+
+              <h3>4. Perception Limit</h3>
+            <p> 
+              LEDs blinking faster than around 10–12 milliseconds become too fast for the human eye to distinguish as blinking.
+            </p>
+
+            <h3>5. Help Used</h3>
+            <p>
+              I used ChatGPT to help me understand how to update my style.css file in order to make the website look organized with my inputted information.
+            </p>
+          </section>
+      </main>
+      
   </body>
 </html>

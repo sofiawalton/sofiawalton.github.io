@@ -17,6 +17,7 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+  margin-top: 10px;
 }
 
 body {
@@ -26,6 +27,10 @@ body {
   max-width: 1000px;
   padding: 2em;
   margin: auto;
+}
+
+section {
+  margin-bottom: 60px;
 }
 
 h1 {

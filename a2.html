@@ -4,15 +4,106 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
 
-    <title>Example Student's HCDE 439 Physical Computing Page!</title>
+    <title>Sofia Walton's HCDE 439 Physical Computing Page!</title>
 
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h1>Example Student's Assignment 2!</h1>
-    <div class="header">
-      <img src="red-panda.jpg" />
-      <p>Here is all the documentation for assignment 2!</p>
-    </div>
+   
+    <header>
+    <h1>Sofia's Assignment 2!</h1>
+      <p>Here is all the documentation for assignment 2!<br>
+      </header>
+
+      <main>
+        <section>
+        <h2>Schematic</h2>
+        <img src="Schematic.jpg" class="Schematic.jpeg" />
+        <p>Image of my schematic for the circuit & resistance calculation.</p>
+        </section>
+
+        <section>
+          <h2>'Fade' Circuit Documentation</h2>
+          <img src="blink1.jpeg" class="blink1.jpeg" />
+          <p>
+            This is my 'Blink' circuit. The breadboard is connected to the Arduino with:
+        <ul>
+          <li>Green wire → pin 8</li>
+          <li>Red wire → pin 13</li>
+          <li>Yellow wire → pin 4</li>
+          <li>Black wire → GND</li>
+        </ul>
+        Resistors and LEDs are placed next to the associated wires.
+          </p>
+        </section>
+
+        <section>
+          <h2>Code</h2>
+          <pre>
+            <code>
+               
+        // the setup function runs once when you press reset or power the board<br>
+         void setup() { <br>
+        // initialize digital pin LED_BUILTIN as an output. <br>
+        pinMode(8, OUTPUT); <br>
+        pinMode(13, OUTPUT); <br>
+        pinMode(4, OUTPUT); <br>
+        } <br>
+
+      // the loop function runs over and over again forever<br>
+      void loop() {<br>
+          digitalWrite(8, HIGH);  // turn the green LED on (HIGH is the voltage level)<br>
+          delay(500);                      // wait for a second<br>
+          digitalWrite(8, LOW);   // turn the green LED off by making the voltage LOW<br>
+          delay(500);  <br>
+          digitalWrite(13, HIGH);  // turn the red LED on (HIGH is the voltage level)<br>
+          delay(700);                      // wait for a second<br>
+          digitalWrite(13, LOW);   // turn the red LED off by making the voltage LOW<br>
+          delay(700);<br>
+          digitalWrite(4, HIGH);  // turn the yellow LED on (HIGH is the voltage level)<br>
+          delay(400);                      // wait for a second<br>
+          digitalWrite(4, LOW);   // turn the yellow LED off by making the voltage LOW<br>
+          delay(400);                    // wait for a second<br>
+      
+         }
+            </code></pre>
+          </section>
+
+          <section>
+          <h2>Operation Video</h2>
+           <video controls>
+            <source src='blink-video.mp4' type="video/mp4" />
+             Your browser does not support the video tag.
+           </video>
+            <p>Video of my circuit in action, lighting up 3 LEDs at different times.</p>
+          </section>
+
+          <section>
+            <h2>Questions</h2>
+
+            <h3>1. Voltage x Time Graph</h3>
+            <img src="graph.jpeg" class="blink1.jpeg" />
+            <p>
+              I chose the blink times (500ms, 700ms, 400ms) randomly while writing the code.
+              The graph shows the high (on) and low (off) times for each LED over a 3200ms cycle
+              (1000ms green + 1400ms red + 800ms yellow).
+            </p>
+
+            <h3>2. Max Current</h3>
+            <p>
+              If powered by a 1200 mAh battery, it would take approximately 60 hours to drain the battery when running this circuit, assuming each LED draws about 20mA when lit and they are not all on at the same time.
+            </p>
+
+              <h3>3. Voltage</h3>
+            <p> 
+              When measuring the voltage of my red LED, I got 2.03V. This is because red LEDs typically have a forward voltage of around 2.0V, which is the voltage drop across the LED when it is lit. This compares to the theoretical voltage of 2.0V for red LEDs, indicating that my measurement is accurate and consistent with expected values.
+            </p>
+
+            <h3>4. Help Used</h3>
+            <p>
+              None
+            </p>
+          </section>
+      </main>
   </body>
 </html>
