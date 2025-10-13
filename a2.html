@@ -18,19 +18,19 @@
       <main>
         <section>
         <h2>Schematic</h2>
-        <img src="Schematic.jpg" class="Schematic.jpeg" />
+        <img src="IMG_2129.jpeg" class="Schematic.jpeg" />
         <p>Image of my schematic for the circuit & resistance calculation.</p>
         </section>
 
         <section>
           <h2>'Fade' Circuit Documentation</h2>
-          <img src="blink1.jpeg" class="blink1.jpeg" />
+          <img src="a2 schematic.jpeg" class="blink1.jpeg" />
           <p>
-            This is my 'Blink' circuit. The breadboard is connected to the Arduino with:
+            This is my 'Fade' circuit. The breadboard is connected to the Arduino with:
         <ul>
-          <li>Green wire → pin 8</li>
-          <li>Red wire → pin 13</li>
-          <li>Yellow wire → pin 4</li>
+          <li>Green wire → pin 10</li>
+          <li>Red wire → pin 11</li>
+          <li>Blue wire → pin 9</li>
           <li>Black wire → GND</li>
         </ul>
         Resistors and LEDs are placed next to the associated wires.
@@ -42,61 +42,113 @@
           <pre>
             <code>
                
-        // the setup function runs once when you press reset or power the board<br>
-         void setup() { <br>
-        // initialize digital pin LED_BUILTIN as an output. <br>
-        pinMode(8, OUTPUT); <br>
-        pinMode(13, OUTPUT); <br>
-        pinMode(4, OUTPUT); <br>
-        } <br>
+        /*
+  Fade <br>
 
-      // the loop function runs over and over again forever<br>
-      void loop() {<br>
-          digitalWrite(8, HIGH);  // turn the green LED on (HIGH is the voltage level)<br>
-          delay(500);                      // wait for a second<br>
-          digitalWrite(8, LOW);   // turn the green LED off by making the voltage LOW<br>
-          delay(500);  <br>
-          digitalWrite(13, HIGH);  // turn the red LED on (HIGH is the voltage level)<br>
-          delay(700);                      // wait for a second<br>
-          digitalWrite(13, LOW);   // turn the red LED off by making the voltage LOW<br>
-          delay(700);<br>
-          digitalWrite(4, HIGH);  // turn the yellow LED on (HIGH is the voltage level)<br>
-          delay(400);                      // wait for a second<br>
-          digitalWrite(4, LOW);   // turn the yellow LED off by making the voltage LOW<br>
-          delay(400);                    // wait for a second<br>
-      
-         }
+  This example shows how to fade an LED on pin 9 using the analogWrite() <br>
+  function. <br>
+
+  The analogWrite() function uses PWM, so if you want to change the pin you're <br>
+  using, be sure to use another PWM capable pin. On most Arduino, the PWM pins <br>
+  are identified with a "~" sign, like ~3, ~5, ~6, ~9, ~10 and ~11. <br>
+
+  This example code is in the public domain. <br>
+
+  https://docs.arduino.cc/built-in-examples/basics/Fade/ <br>
+*/ <br>
+// Fade Variables: <br>
+int ledblue = 9;        // the PWM pin the blue LED is attached to <br>
+int ledgreen = 10;      // the PWM pin the green LED is attached to <br>
+int ledred = 11;        // the PWM pin the red LED is attached to <br>
+
+int brightness = 0;  // how bright the LED is <br>
+int fadeAmount = 5;  // how many points to fade the LED by <br>
+
+//Button Variables: <br>
+// constants won't change. They're used here to set pin numbers: <br>
+const int buttonPin = 2;  // the number of the pushbutton pin <br>
+const int ledPin = 13;    // the number of the LED pin <br>
+
+// variables will change: <br>
+int buttonState = 0;  // variable for reading the pushbutton status <br>
+// the setup routine runs once when you press reset: <br>
+void setup() { <br>
+  // initialize the LED pin as an output: <br>
+  pinMode(ledPin, OUTPUT); <br>
+  // initialize the pushbutton pin as an input: <br>
+  pinMode(buttonPin, INPUT); <br>
+
+  // Fade outputs  <br>
+  pinMode(ledblue, OUTPUT); <br>
+  pinMode(ledgreen, OUTPUT); <br>
+  pinMode(ledred, OUTPUT); <br>
+} <br>
+
+void loop() { <br>
+  // read the state of the pushbutton value: <br>
+  buttonState = digitalRead(buttonPin); <br>
+
+  // check if the pushbutton is pressed. If it is, the buttonState is HIGH: <br>
+  if (buttonState == HIGH) { <br>
+    // turn LED on: <br>
+    digitalWrite(ledPin, HIGH); <br>
+
+  // red to blue color fade <br>
+  for(int i =0; i<= 256; i++){  // loop from 0 to 256 to change brightness of rgb LED <br>
+    analogWrite(ledred, 256 - i); //decrease red brightness <br>
+    analogWrite(ledblue, i); //increase blue brightness <br>
+    delay(40); // wait for 40 seconds <br>
+  } <br>
+  // blue to green color fade <br>
+  for(int i =0; i<= 256; i++){  // loop from 0 to 256 to change brightness of rgb LED <br>
+    analogWrite(ledblue, 256 - i); //decrease blue brightness <br>
+    analogWrite(ledgreen, i); //increase green brightness <br>
+    delay(40); // wait for 40 seconds <br>
+  } <br>
+  // green to red color fade <br>
+  for(int i =0; i<= 256; i++){  // loop from 0 to 256 to change brightness of rgb LED <br>
+    analogWrite(ledgreen, 256 - i); //decrease green brightness <br>
+    analogWrite(ledred, i); //increase red brightness <br>
+    delay(40); // wait for 40 seconds <br>
+  } <br>
+  } else { <br>
+    // turn LED off: <br>
+    digitalWrite(ledPin, LOW); <br>
+    digitalWrite(ledblue, 0); // turn blue LED off <br>
+    digitalWrite(ledgreen, 0); // turn green LED off <br>
+    digitalWrite(ledred, 0); //turn red LED off <br>
+  } <br>
+}
+
+
             </code></pre>
           </section>
 
           <section>
           <h2>Operation Video</h2>
            <video controls>
-            <source src='blink-video.mp4' type="video/mp4" />
+            <source src='IMG_2124.mp4' type="video/mp4" />
              Your browser does not support the video tag.
            </video>
-            <p>Video of my circuit in action, lighting up 3 LEDs at different times.</p>
-          </section>
+            <p>Video of my circuit in action, fading an rgb LEDs when the button is pressed.</p>
 
           <section>
             <h2>Questions</h2>
 
             <h3>1. Voltage x Time Graph</h3>
-            <img src="graph.jpeg" class="blink1.jpeg" />
+            <img src="IMG_2130.jpeg" class="blink1.jpeg" />
             <p>
-              I chose the blink times (500ms, 700ms, 400ms) randomly while writing the code.
-              The graph shows the high (on) and low (off) times for each LED over a 3200ms cycle
-              (1000ms green + 1400ms red + 800ms yellow).
+              My voltage x time graph representing the voltage across an LED with analogWrite(led, 64), analogWrite(led, 128), and analogWrite(led, 255).
             </p>
 
             <h3>2. Max Current</h3>
             <p>
-              If powered by a 1200 mAh battery, it would take approximately 60 hours to drain the battery when running this circuit, assuming each LED draws about 20mA when lit and they are not all on at the same time.
+              If powered by a 1200 mAh battery, it would take approximately 15 hours to drain the battery when running this circuit, assuming the single LED draws 20mA of current plus the rgb LED draws 60mA of current when all LED are used. 1200mAh / 80mA = 15 hours.
             </p>
 
               <h3>3. Voltage</h3>
             <p> 
-              When measuring the voltage of my red LED, I got 2.03V. This is because red LEDs typically have a forward voltage of around 2.0V, which is the voltage drop across the LED when it is lit. This compares to the theoretical voltage of 2.0V for red LEDs, indicating that my measurement is accurate and consistent with expected values.
+              When measuring the voltage of my red LED, I got 2.03V. This is because red LEDs typically have a forward voltage of around 1.8V, which is the voltage drop across the LED when it is lit. This compares to the theoretical voltage of 1.8V for red LEDs, indicating that my measurement is accurate and consistent with expected values.
             </p>
 
             <h3>4. Help Used</h3>
