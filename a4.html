@@ -18,7 +18,7 @@
       <main>
         <section>
         <h2>Schematic</h2>
-        <img src="a4chematic.jpeg" class="Schematic.jpeg" />
+        <img src="a4schematic.png" class="Schematic.jpeg" />
         <p>Image of my schematic for the circuit & resistance calculation.</p>
         </section>
 
@@ -32,7 +32,7 @@
           <li>Red wrie associated with all resistors → pin 4</li>
           <li>Red wire associated with green wire → pin ~6</li>
           <li>Red wire associated with orange wire → pin 8</li>
-          <li>Red wire → 5v</li>
+          <li>Other red wire → 5v</li>
         </ul>
         Resistors are placed next to the associated wires.
           </p>
@@ -43,7 +43,8 @@
           <pre>
             <code>
                
-            // This uses 3 capactitive touch sensors connected with 10M resistors to detect when touched. When a sensor is activated, a servo motor connected to pin 9 is moved to a different position:
+            // This uses 3 capactitive touch sensors connected with 10M resistors to detect when touched. When a sensor is activated, 
+            a servo motor connected to pin 9 is moved to a different position:
             // - Sensor 1 (yellow wire connected to pin 2) : moved servo to 0 degrees
             // - Sensor 2 (green wire connected to pin ~6) : moves servo to 135 degrees
             // - Sensor 3 (orange wire connected to pin 8) : moves servo to 180 degrees
@@ -123,7 +124,7 @@
             <h2>Questions</h2>
 
             <h3>Question 1</h3>
-            <img src="a4graph.jpeg" class="blink1.jpeg" />
+            <img src="a4graph.png" class="blink1.jpeg" />
             <p>
              This is my PWM signal for servo motor (pin 9) graph
             </p>
@@ -168,7 +169,7 @@
 
             <h3>Question 4</h3>
             <p>
-              I used Microsoft CoPilot to help me when I was stuck on why my servo stopped working once I unplugged my computer from its charger. My arduino was being powered through the computer USB port, and my serial values were very high when I was plugged in, but then changed drastically when I unplugged. I hadn't realized my serial values changing, so I asked Co-Pilot why my threshold value (1023) wasnt't working anymore, and it listed various ways to approach debugging. When I saw that it listed a change in power can affect it, that's when I realized I had unplugged my computer from charging. This made me realize that it is definietly easier to not determine threshold values by just observing serial monitor values. Overal, Co-Pilot helped me think through all the possible issues I could've encountered, and helped me understand more about how power can affect sensor readings.
+              I used Microsoft CoPilot to help me when I was stuck on why my servo stopped working once I unplugged my computer from its charger. My arduino was being powered through the computer USB port, and my serial values were very high when I was plugged in, but then changed drastically when I unplugged. I hadn't realized my serial values changing, so I asked CoPilot why my threshold value (1023) wasn't working anymore, and it listed various ways to approach debugging. When I saw that it listed a change in power can affect it, that's when I realized I had unplugged my computer from charging. This made me realize that it is definietly easier to not determine threshold values by just observing serial monitor values. Overall, CoPilot helped me think through all the possible issues I could've encountered, and helped me understand more about how power can affect sensor readings.
           </section>
       </main>
   </body>
