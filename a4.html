@@ -18,7 +18,7 @@
       <main>
         <section>
         <h2>Schematic</h2>
-        <img src="a34chematic.jpeg" class="Schematic.jpeg" />
+        <img src="a4chematic.jpeg" class="Schematic.jpeg" />
         <p>Image of my schematic for the circuit & resistance calculation.</p>
         </section>
 
@@ -132,9 +132,15 @@
             <p>
             <pre>
                 <code>
+                    lastReading = readSensor(); // read the sensor and store the value
 
-
-
+                    loop:
+                        newReading = readSensor(); // read the sensor again
+                    if abs(newReading - lastReading) > threshold:
+                        use lastReading instead of newReading // error detected due to difference being too large
+                    else:
+                        use newReading
+                        lastReading = newReading // update lastReading
 
                 </code>
             </pre> 
@@ -144,7 +150,15 @@
             <p> 
              <pre>
                 <code>
+                    loop:
+                    // read the sensor multiple times, the more readings the more accurate 
+                        r1 = readSensor1(); // read sensor 1
+                        r2 = readSensor2(); // read sensor 2
+                        r3 = readSensor3(); // read sensor 3
 
+                    medianValue = median(r1, r2, r3); // calculate median value of the three readings
+
+                    useValue(medianValue); // use the median value and not the noisy reading 
 
 
 
