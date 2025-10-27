@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+    <title>Sofia Walton's HCDE 439 Physical Computing Page!</title>
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+   
+    <header>
+    <h1>Sofia's Assignment 4!</h1>
+      <p>Here is all the documentation for assignment 4!<br>
+      </header>
+
+      <main>
+        <section>
+        <h2>Schematic</h2>
+        <img src="a34chematic.jpeg" class="Schematic.jpeg" />
+        <p>Image of my schematic for the circuit & resistance calculation.</p>
+        </section>
+
+        <section>
+          <h2>'Libraries!' Circuit Documentation</h2>
+          <img src="a4pic.jpeg" class="blink1.jpeg" />
+          <p>
+            This is my 'Libraries!' circuit. The breadboard is connected to the Arduino with:
+        <ul>
+          <li>Red wire associated with yellow wire → pin 2</li>
+          <li>Red wrie associated with all resistors → pin 4</li>
+          <li>Red wire associated with green wire → pin ~6</li>
+          <li>Red wire associated with orange wire → pin 8</li>
+          <li>Red wire → 5v</li>
+        </ul>
+        Resistors are placed next to the associated wires.
+          </p>
+        </section>
+
+        <section>
+          <h2>Code</h2>
+          <pre>
+            <code>
+               
+            // This uses 3 capactitive touch sensors connected with 10M resistors to detect when touched. When a sensor is activated, a servo motor connected to pin 9 is moved to a different position:
+            // - Sensor 1 (yellow wire connected to pin 2) : moved servo to 0 degrees
+            // - Sensor 2 (green wire connected to pin ~6) : moves servo to 135 degrees
+            // - Sensor 3 (orange wire connected to pin 8) : moves servo to 180 degrees
+
+            #include <Servo.h> // including servo library to control the servo
+            #include <CapacitiveSensor.h> // including capacitive sensor library to sense touch
+
+            Servo myservo;  // create Servo object to control a servo
+
+            CapacitiveSensor   cs_4_2 = CapacitiveSensor(4,2);        // 10M resistor between pins 4 & 2, pin 2 is sensor pin, add a wire and or foil if desired
+            CapacitiveSensor   cs_4_6 = CapacitiveSensor(4,6);        // 10M resistor between pins 4 & 6, pin 6 is sensor pin, add a wire and or foil
+            CapacitiveSensor   cs_4_8 = CapacitiveSensor(4,8);        // 10M resistor between pins 4 & 8, pin 8 is sensor pin, add a wire and or foil
+
+
+            void setup() {
+            myservo.attach(9);  // attaches the servo on pin 9 to the Servo object
+            // turn off autocalibrate for all sensors
+            cs_4_2.set_CS_AutocaL_Millis(0xFFFFFFFF);     
+            cs_4_6.set_CS_AutocaL_Millis(0xFFFFFFFF);
+            cs_4_8.set_CS_AutocaL_Millis(0xFFFFFFFF);
+            Serial.begin(9600); // start serial 
+            }
+
+            void loop() {
+            long start = millis(); // records start time of loop
+            // reads capacitive sensor values with sample window 30
+            long total1 =  cs_4_2.capacitiveSensor(30);
+            long total2 =  cs_4_6.capacitiveSensor(30);
+            long total3 =  cs_4_8.capacitiveSensor(30);
+
+            Serial.print(millis() - start);        // check on performance in milliseconds
+            Serial.print("\t");                    // tab character for debug windown spacing
+
+            Serial.print(total1);                  // print sensor output 1
+            Serial.print("\t");
+            Serial.print(total2);                  // print sensor output 2
+            Serial.print("\t");
+            Serial.println(total3);                // print sensor output 3
+
+            int pos = 90;  // default servo position 
+            //setting the servo position based on the sensor readings. 1023 represents the threshold I chose based off serial readings I observed when touching the sensor.
+            if (total1 > 1023){
+            pos = 0; // sensor 1 activated and moves servo to 0 degrees
+            } else if (total2 > 1023){
+            pos = 135; // sensor 2 activated and moves servo to 135 degrees
+            }else if (total3 > 1023){
+            pos = 180; // sensor 3 activated and moves servo to 180 degrees
+            }
+            myservo.write(pos);                  // sets the servo position according to the scaled value
+            delay(50);                           // waits for the servo to get there
+            }
+
+   
+
+            </code></pre>
+          </section>
+
+          <section>
+          <h2>Operation Video</h2>
+           <video controls>
+            <source src='a4video.mp4' type="video/mp4" />
+             Your browser does not support the video tag.
+           </video>
+            <p>Video of my circuit in action. </p>
+           <video controls>
+            <source src='a4ppen.mp4' type="video/mp4" />
+             Your browser does not support the video tag.
+           </video>
+            <p>Video of my servo drawing half circles! </p>
+           <video controls>
+            <source src='a4gpen.mp4' type="video/mp4" />
+             Your browser does not support the video tag.
+           </video>
+            <p>My attempt at getting a full circle drawn since the servo only goes 180 degrees. </p>
+           
+          <section>
+            <h2>Questions</h2>
+
+            <h3>Question 1</h3>
+            <img src="a4graph.jpeg" class="blink1.jpeg" />
+            <p>
+             This is my PWM signal for servo motor (pin 9) graph
+            </p>
+
+            <h3>Question 2</h3>
+            <p>
+            <pre>
+                <code>
+
+
+
+
+                </code>
+            </pre> 
+            </p>
+
+              <h3>Question 3</h3>
+            <p> 
+             <pre>
+                <code>
+
+
+
+
+                </code>
+            </pre> 
+            </p>
+
+            <h3>Question 4</h3>
+            <p>
+              I used Microsoft CoPilot to help me when I was stuck on why my servo stopped working once I unplugged my computer from its charger. My arduino was being powered through the computer USB port, and my serial values were very high when I was plugged in, but then changed drastically when I unplugged. I hadn't realized my serial values changing, so I asked Co-Pilot why my threshold value (1023) wasnt't working anymore, and it listed various ways to approach debugging. When I saw that it listed a change in power can affect it, that's when I realized I had unplugged my computer from charging. This made me realize that it is definietly easier to not determine threshold values by just observing serial monitor values. Overal, Co-Pilot helped me think through all the possible issues I could've encountered, and helped me understand more about how power can affect sensor readings.
+          </section>
+      </main>
+  </body>
+</html>
