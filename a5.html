@@ -32,7 +32,6 @@
           <li>Red wrie associated with all resistors → pin 4</li>
           <li>Red wire associated with green wire → pin 8</li>
           <li>Red wire associated with orange wire → pin ~6</li>
-          <li>Other red wire → 5v</li>
           <li>White wire connected to MOSFET → pin ~9</li>
           <li>Black wire → GND</li>
         </ul>
@@ -137,10 +136,14 @@
              <pre>
                 <code>
                   //motor A pins
-                  motorAforward
-                motorAbackward
-                motorAon
+                    motorAforward = 2;
+                    motorAbackward = 3;
+                    motorAon = 9; //enable pin
+
                   //motor B pins
+                    motorBforward = 4;
+                    motorBbackward = 5;
+                    motorBon = 10; //enable pin
 
                 //setup function
                 pinMode(2, OUTPUT);
@@ -156,25 +159,28 @@
                 digitalWrite(3, LOW);
                 digitalWrite(4, HIGH);
                 digitalWrite(5, LOW);
+                delay
 
                 //motors backward
                 digitalWrite(2, LOW);
                 digitalWrite(3, HIGH);
                 digitalWrite(4, LOW);
                 digitalWrite(5, HIGH);
+                delay   
 
                 //one forward, one backward
                 digitalWrite(2, HIGH);
                 digitalWrite(3, LOW);
                 digitalWrite(4, LOW);
                 digitalWrite(5, HIGH);
+                delay  
 
                 //one back then one forward
                 digitalWrite(2, LOW);
                 digitalWrite(3, HIGH);
                 digitalWrite(4, HIGH);
                 digitalWrite(5, LOW);
-
+                delay
         
 
 
