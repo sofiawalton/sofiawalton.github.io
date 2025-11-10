@@ -27,64 +27,79 @@ body {
   max-width: 1000px;
   padding: 2em;
   margin: auto;
+  background: linear-gradient(135deg, #f0f4ff, #dbeafe);
+  color: #333;
 }
 
 section {
   margin-bottom: 60px;
 }
 
-h1 {
-  font-weight: 800;
-}
-
-h2 {
-  font-weight: 700;
+h1, h2 {
+  color: #1e3a8a;
 }
 
 .header {
   display: flex;
   gap: 1em;
   margin-top: 1em;
+  border-bottom: 2px solid #e0e7ff;
+  padding-bottom: 1em;
 }
 
 .header img {
   width: 50%;
   object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1em;
+  gap: 1.5em;
   margin-top: 2em;
 }
 
+.assignment {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.assignment:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
 .assignment a {
-  color: #000;
+  color: #1e40af;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .assignment a:hover {
-  color: #f06;
+  color: #3b82f6;
 }
 
 .assignment img {
   aspect-ratio: 1;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .assignment p {
   margin-top: 0.5em;
 }
-.blink1.jpeg{
+
+.blink1.jpeg,
+.Schematic.jpeg {
   display: block;
-  width: 100%;
-  height:auto;
+  width: 75%;
+  height: auto;
   margin-bottom: 20px;
-}
-.Schematic.jpeg{
-  display: block;
-  width: 100%;
-  height:auto;
-  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
