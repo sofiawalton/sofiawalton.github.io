@@ -53,7 +53,7 @@
 
             #include <CapacitiveSensor.h>
 
-            int ledPin = 9; // PWM connected to MOSEFT, controls 12v LED strip
+            int ledPin = 9; // PWM connected to N-MOSEFT, controls 12v LED strip
 
             // Capacitive sensors 
             CapacitiveSensor cs_4_2 = CapacitiveSensor(4,2); // 1M resistor between pins 4 & 2, pin 2 is sensor pin, add a wire and or foil if desired
@@ -84,6 +84,7 @@
             Serial.println(total3); // print sensor output 3
 
             // if sensor 1 is touched (value exceeds the threshold), increase brightness
+            // I determined threshold value of 1000 through serial monitor testing
             if(total1> 1000){
                 brightness = min(brightness + touch_change, 255);
             }
@@ -119,24 +120,62 @@
 
             <h3>Question 1</h3>
             <p>
-             
+             The absolute maximum amount of current between pin 2 and pin 3 is: 
+             <ul>
+                <li>Continuous Drain Current: 37.2 A</li>
+                <li>Pulsed Drain Current: 80 A</li>
             </p>
 
             <h3>Question 2</h3>
             <p>
-            <pre>
-                <code>
-                    
-
-                </code>
-            </pre> 
+            <img src="a5sq2.png" class="Schematic.jpeg" />
             </p>
 
               <h3>Question 3</h3>
             <p> 
+            <img src="a5sq3.png" class="Schematic.jpeg" />
              <pre>
                 <code>
-                   
+                  //motor A pins
+                  motorAforward
+                motorAbackward
+                motorAon
+                  //motor B pins
+
+                //setup function
+                pinMode(2, OUTPUT);
+                pinMode(3, OUTPUT);
+                pinMode(4, OUTPUT);
+                pinMode(5, OUTPUT);
+            
+
+                // use analogWrite function on enable pins to set motors to medium speed
+
+                //motors forward
+                digitalWrite(2, HIGH);
+                digitalWrite(3, LOW);
+                digitalWrite(4, HIGH);
+                digitalWrite(5, LOW);
+
+                //motors backward
+                digitalWrite(2, LOW);
+                digitalWrite(3, HIGH);
+                digitalWrite(4, LOW);
+                digitalWrite(5, HIGH);
+
+                //one forward, one backward
+                digitalWrite(2, HIGH);
+                digitalWrite(3, LOW);
+                digitalWrite(4, LOW);
+                digitalWrite(5, HIGH);
+
+                //one back then one forward
+                digitalWrite(2, LOW);
+                digitalWrite(3, HIGH);
+                digitalWrite(4, HIGH);
+                digitalWrite(5, LOW);
+
+        
 
 
 
@@ -146,8 +185,8 @@
 
             <h3>Question 4</h3>
             <p>
-              I used Microsoft CoPilot to help 
-            <section>
+              No AI used to complete the assignment.
+            </p>
       </main>
   </body>
 </html>
