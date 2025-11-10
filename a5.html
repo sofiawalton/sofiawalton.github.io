@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+    <title>Sofia Walton's HCDE 439 Physical Computing Page!</title>
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+   
+    <header>
+    <h1>Sofia's Assignment 5!</h1>
+      <p>Here is all the documentation for assignment 5!<br>
+      </header>
+
+      <main>
+        <section>
+        <h2>Schematic</h2>
+        <img src="a5schem.png" class="Schematic.jpeg" />
+        <p>Image of my schematic for the circuit & resistance calculation.</p>
+        </section>
+
+        <section>
+          <h2>'Higher Voltage!' Circuit Documentation</h2>
+          <img src="a5pic.jpeg" class="blink1.jpeg" />
+          <p>
+            This is my 'Higher Voltage!' circuit. The breadboard is connected to the Arduino with:
+        <ul>
+          <li>Red wire associated with yellow wire → pin 2</li>
+          <li>Red wrie associated with all resistors → pin 4</li>
+          <li>Red wire associated with green wire → pin 8</li>
+          <li>Red wire associated with orange wire → pin ~6</li>
+          <li>Other red wire → 5v</li>
+          <li>White wire connected to MOSFET → pin ~9</li>
+          <li>Black wire → GND</li>
+        </ul>
+        Resistors are placed next to the associated wires.
+          </p>
+        </section>
+
+        <section>
+          <h2>Code</h2>
+          <pre>
+            <code>
+            // This uses 3 capactitive touch sensors connected with 10M resistors to detect when touched. When a sensor is activated, 
+            // the led light strip will change in brightness.
+                        // - Sensor 1 (yellow wire connected to pin 2) : increases brightness by 10 
+                        // - Sensor 2 (orange wire connected to pin 8) : decreases brightness by 10
+                        // - Sensor 3 (green wire connected to pin ~6) : sets brightness to 0
+
+
+            #include <CapacitiveSensor.h>
+
+            int ledPin = 9; // PWM connected to MOSEFT, controls 12v LED strip
+
+            // Capacitive sensors 
+            CapacitiveSensor cs_4_2 = CapacitiveSensor(4,2); // 1M resistor between pins 4 & 2, pin 2 is sensor pin, add a wire and or foil if desired
+            CapacitiveSensor cs_4_8 = CapacitiveSensor(4,8); // 1M resistor between pins 4 & 8, pin 8 is sensor pin, add a wire and or foil
+            CapacitiveSensor cs_4_6 = CapacitiveSensor(4,6); // 1M resistor between pins 4 & 6, pin 6 is sensor pin, add a wire and or foil
+           
+            int brightness = 0; // LED brightness
+            int touch_change = 10; // amount to increase or decrease the brightness per touch
+
+            void setup() {
+            Serial.begin(9600); // start serial 
+
+            pinMode(ledPin, OUTPUT); // set LED pin as output so it sends voltage to MOSFET
+            // turn off autocalibrate for all sensors
+            cs_4_2.set_CS_AutocaL_Millis(0xFFFFFFFF);
+            cs_4_8.set_CS_AutocaL_Millis(0xFFFFFFFF);
+            cs_4_6.set_CS_AutocaL_Millis(0xFFFFFFFF);
+            }
+
+            void loop() {
+            // reads capacitive sensor values with sample window 30
+            long total1 = cs_4_2.capacitiveSensor(30);
+            long total2 = cs_4_8.capacitiveSensor(30);
+            long total3 = cs_4_6.capacitiveSensor(30);
+
+            Serial.print(total1); Serial.print("\t"); // print sensor output 1
+            Serial.print(total2); Serial.print("\t"); // print sensor output 2
+            Serial.println(total3); // print sensor output 3
+
+            // if sensor 1 is touched (value exceeds the threshold), increase brightness
+            if(total1> 1000){
+                brightness = min(brightness + touch_change, 255);
+            }
+            // if sensor 2 is touched, decrease brightness
+            if(total2 > 1000){
+                brightness = max(brightness - touch_change, 0); // decreases brightness but no below value 0
+            }
+            // if sensor 3 is touched, reset brightness to 0
+            if(total3 > 1000){
+                brightness = 0;
+            }
+            // applies the brightness to the LED strip through PWM
+            analogWrite(ledPin, brightness);
+
+            delay(50); // gives time to reset 
+            }
+
+
+            </code></pre>
+          </section>
+
+          <section>
+          <h2>Operation Video</h2>
+           <video controls>
+            <source src='a5video.mp4' type="video/mp4" />
+             Your browser does not support the video tag.
+           </video>
+            <p>Video of my circuit in action. </p>
+           
+
+          <section>
+            <h2>Questions</h2>
+
+            <h3>Question 1</h3>
+            <p>
+             
+            </p>
+
+            <h3>Question 2</h3>
+            <p>
+            <pre>
+                <code>
+                    
+
+                </code>
+            </pre> 
+            </p>
+
+              <h3>Question 3</h3>
+            <p> 
+             <pre>
+                <code>
+                   
+
+
+
+                </code>
+            </pre> 
+            </p>
+
+            <h3>Question 4</h3>
+            <p>
+              I used Microsoft CoPilot to help 
+            <section>
+      </main>
+  </body>
+</html>
