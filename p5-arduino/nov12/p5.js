@@ -17,14 +17,14 @@ function setup() {
 }
 
 function draw() {
-  const portIsOpen = checkPort(); // Check whether the port is open (see checkPort function below)
-  if (!portIsOpen) return; // If the port is not open, exit the draw loop
+  // const portIsOpen = checkPort(); // Check whether the port is open (see checkPort function below)
+  // if (!portIsOpen) return; // If the port is not open, exit the draw loop
 
-  let motor = port.readUntil("\n"); // Read from the port until the newline
-  if (motor.length == 0) return; // If we didn't read anything, return.
+  // let motor = port.readUntil("\n"); // Read from the port until the newline
+  // if (motor.length == 0) return; // If we didn't read anything, return.
 
-  // trim the whitespace (the newline) and convert the string to a number
-  const buttonState = Number(str.trim());
+  // // trim the whitespace (the newline) and convert the string to a number
+  // const buttonState = Number(str.trim());
     angleMode(DEGREES);
     translate(windowWidth / 2, windowHeight / 2);
 
