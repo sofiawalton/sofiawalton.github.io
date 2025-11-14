@@ -1,0 +1,80 @@
+const BAUD_RATE = 9600;
+let port, connectBtn;
+
+function setup() {
+  setupSerial();
+  createCanvas(windowWidth, windowHeight);
+  textFont("system-ui", 32);
+  textAlign(CENTER, CENTER);
+}
+
+function draw() {
+  const portIsOpen = checkPort();
+  if (!portIsOpen) return;
+
+  let str = port.readUntil("\n");
+  if (str.length == 0) return;
+
+  let values = str.trim().split(",");
+  if (values.length < 2) return;
+
+  let xVal = Number(values[0]);
+  let yVal = Number(values[1]);
+
+  let xPos = map(xVal, 0, 1023, 0, windowWidth);
+  let yPos = map(yVal, 0, 1023, 0, windowHeight);
+
+  background("black");
+  fill("white");
+
+  let shape = "";
+
+  if (xVal < 400) {
+    ellipse(xPos, yPos, 100, 100);
+    shape = "circle";
+  } else if (xVal > 700) {
+    rect(xPos - 50, yPos - 50, 100, 100);
+    shape = "square";
+  } else {
+    triangle(xPos, yPos - 50, xPos - 50, yPos + 50, xPos + 50, yPos + 50);
+    shape = "triangle";
+  }
+
+  // Send shape command to Arduino
+  port.write(shape + "\n");
+
+  // Display text
+  fill("yellow");
+  text(`Shape: ${shape}`, windowWidth / 2, 50);
+}
+
+// Serial setup
+function setupSerial() {
+  port = createSerial();
+  let usedPorts = usedSerialPorts();
+  if (usedPorts.length > 0) {
+    port.open(usedPorts[0], BAUD_RATE);
+  }
+  connectBtn = createButton("Connect to Arduino");
+  connectBtn.position(5, 5);
+  connectBtn.mouseClicked(onConnectButtonClicked);
+}
+
+function checkPort() {
+  if (!port.opened()) {
+    connectBtn.html("Connect to Arduino");
+    background("gray");
+    return false;
+  } else {
+    connectBtn.html("Disconnect");
+    return true;
+  }
+}
+
+function onConnectButtonClicked() {
+  if (!port.opened()) {
+    port.open(BAUD_RATE);
+  } else {
+    port.close();
+  }
+}
