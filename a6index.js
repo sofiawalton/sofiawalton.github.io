@@ -31,7 +31,7 @@ noStroke();
   rect(0,windowWidth/3,windowHeight,windowWidth/3);
 
   fill("yellow");
-  rect(0,(2*windowWidth/3,windowHeight,windowWidth/3));
+  rect(0,(2*windowWidth/3),windowHeight,(windowWidth/3));
 
   let shape = "";
     
