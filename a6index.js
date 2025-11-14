@@ -24,7 +24,7 @@ function draw() {
   let xPos = map(xVal, 0, 1023, 0, windowWidth);
   let yPos = map(yVal, 0, 1023, 0, windowHeight);
 
-  background("white");
+  background("purple");
 
   let shape = "";
     
@@ -36,19 +36,17 @@ function draw() {
     rect(xPos - 50, yPos - 50, 100, 100);
     shape = "square";
     fill("green");
-  } else if (xVal >= 400 && xVal <= 700) {
+  } else {
     triangle(xPos, yPos - 50, xPos - 50, yPos + 50, xPos + 50, yPos + 50);
     shape = "triangle";
     fill("yellow");
-  } else{
-    shape = "star";
   }
 
   // Send shape command to Arduino
   port.write(shape + "\n");
 
   // Display text
-  fill("cyan");
+  fill("white");
   text(`Shape: ${shape}`, windowWidth / 2, 50);
 }
 
