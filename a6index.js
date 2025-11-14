@@ -43,11 +43,12 @@ noStroke();
     rect(xPos - 50, yPos - 50, 100, 100);
     shape = "square";
     fill("green");
-  } else if (xVal >= 400 && xVal <= 700) {
-    triangle(xPos, yPos - 50, xPos - 50, yPos + 50, xPos + 50, yPos + 50);
-    shape = "triangle";
-    fill("yellow");
-  }
+ } 
+//else {
+//     triangle(xPos, yPos - 50, xPos - 50, yPos + 50, xPos + 50, yPos + 50);
+//     shape = "triangle";
+//     fill("yellow");
+//   }
 
   // Send shape command to Arduino
   port.write(shape + "\n");
