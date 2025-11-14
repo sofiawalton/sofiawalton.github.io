@@ -4,7 +4,6 @@ let port, connectBtn;
 function setup() {
   setupSerial();
   createCanvas(windowWidth, windowHeight);
-  noStroke();
   textFont("system-ui", 50);
   textAlign(CENTER, CENTER);
 }
@@ -24,14 +23,14 @@ function draw() {
 
   let xPos = map(xVal, 0, 1023, 0, windowWidth);
   let yPos = map(yVal, 0, 1023, 0, windowHeight);
-
-  fill(red);
+noStroke();
+  fill("red");
   rect(0,0,windowWidth,windowHeight/3);
 
-  fill(green);
+  fill("green");
   rect(0,windowHeight/3,windowWidth,windowHeight/3);
 
-  fill(yellow);
+  fill("yellow");
   rect(0,(2*windowHeight)/3,windowWidth,windowHeight/3);
 
   let shape = "";
@@ -44,7 +43,7 @@ function draw() {
     rect(xPos - 50, yPos - 50, 100, 100);
     shape = "square";
     fill("green");
-  } else {
+  } else if (xVal >= 400 && xVal <= 700) {
     triangle(xPos, yPos - 50, xPos - 50, yPos + 50, xPos + 50, yPos + 50);
     shape = "triangle";
     fill("yellow");
@@ -54,7 +53,7 @@ function draw() {
   port.write(shape + "\n");
 
   // Display text
-  fill("white");
+  fill("black");
   text(`Shape: ${shape}`, windowWidth / 2, 50);
 }
 
