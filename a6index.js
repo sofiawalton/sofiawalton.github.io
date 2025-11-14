@@ -27,16 +27,21 @@ function draw() {
   background("white");
 
   let shape = "";
-
+    
   if (xVal < 400) {
     ellipse(xPos, yPos, 100, 100);
     shape = "circle";
+    fill("red");
   } else if (xVal > 700) {
     rect(xPos - 50, yPos - 50, 100, 100);
     shape = "square";
-  } else {
+    fill("green");
+  } else if (xVal >= 400 && xVal <= 700) {
     triangle(xPos, yPos - 50, xPos - 50, yPos + 50, xPos + 50, yPos + 50);
     shape = "triangle";
+    fill("yellow");
+  } else{
+    shape = "star";
   }
 
   // Send shape command to Arduino
