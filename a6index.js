@@ -25,13 +25,13 @@ function draw() {
   let yPos = map(yVal, 0, 1023, 0, windowHeight);
 noStroke();
   fill("red");
-  rect(0,0,windowWidth,windowHeight/3);
+  rect(0,0,windowHeight,windowWidth/3);
 
   fill("green");
-  rect(0,windowHeight/3,windowWidth,windowHeight/3);
+  rect(0,windowWidth/3,windowHeight,windowWidth/3);
 
   fill("yellow");
-  rect(0,(2*windowHeight)/3,windowWidth,windowHeight/3);
+  rect(0,(2*windowWidth/3,windowHeight,windowWidth/3));
 
   let shape = "";
     
