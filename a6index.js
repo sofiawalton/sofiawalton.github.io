@@ -4,6 +4,7 @@ let port, connectBtn;
 function setup() {
   setupSerial();
   createCanvas(windowWidth, windowHeight);
+  noStroke();
   textFont("system-ui", 50);
   textAlign(CENTER, CENTER);
 }
@@ -24,7 +25,14 @@ function draw() {
   let xPos = map(xVal, 0, 1023, 0, windowWidth);
   let yPos = map(yVal, 0, 1023, 0, windowHeight);
 
-  background("purple");
+  fill(red);
+  rect(0,0,windowWidth,windowHeight/3);
+
+  fill(green);
+  rect(0,windowHeight/3,windowWidth,windowHeight/3);
+
+  fill(yellow);
+  rect(0,(2*windowHeight)/3,windowWidth,windowHeight/3);
 
   let shape = "";
     
