@@ -1,59 +1,53 @@
-// Joystick pins
-const int xPin = A0;     
-const int yPin = A1;      
-const int swPin = 2;      
+const int Xpin = A0; // X-axis pin
+const int Ypin = A1; // Y-axis pin
+const int swPin = 2; // Joystick button pin
 
-// LED pins
-const int greenLED = 8;
-const int redLED = 13;
-const int yellowLED = 4;
+const int greenLED = 9; // Green LED pin
+const int redLED = 10; // Red LED pin
+const int yellowLED = 11; // Yellow LED pin
 
 void setup() {
   Serial.begin(9600);
-
-  pinMode(swPin, INPUT_PULLUP); 
+  pinMode(swPin, INPUT_PULLUP); // Set button pin as input with internal pull-up resistor
   pinMode(greenLED, OUTPUT);
   pinMode(redLED, OUTPUT);
   pinMode(yellowLED, OUTPUT);
 }
 
-void loop() {
-  // Read joystick values
-  int xVal = analogRead(xPin);
-  int yVal = analogRead(yPin);
-  int swState = digitalRead(swPin); // LOW when pressed
 
-  // Send joystick data to p5.js
-  Serial.print(xVal);
-  Serial.print(",");
-  Serial.print(yVal);
-  Serial.print(",");
-  Serial.println(swState); // Include button state
+void loop(){
+    int xValue = analogRead(Xpin); // Read X-axis value
+    int yValue = analogRead(Ypin); // Read Y-axis value
+    int swState = digitalRead(swPin); // Read button state
 
-  // Check if p5.js sent a command
-  if (Serial.available()) {
-    String command = Serial.readStringUntil('\n');
-    command.trim();
+    Serial.print(xValue);
+    Serial.print(",");
+    Serial.print(yValue);
+    Serial.print(",");
+    Serial.println(swState);
 
-    if (command == "circle") {
-      digitalWrite(greenLED, HIGH);
-      digitalWrite(redLED, LOW);
-      digitalWrite(yellowLED, LOW);
-    } else if (command == "square") {
-      digitalWrite(redLED, HIGH);
-      digitalWrite(greenLED, LOW);
-      digitalWrite(yellowLED, LOW);
-    } else if (command == "triangle") {
-      digitalWrite(yellowLED, HIGH);
-      digitalWrite(greenLED, LOW);
-      digitalWrite(redLED, LOW);
-    } else if (command == "clear") {
-      // Turn off all LEDs
-      digitalWrite(greenLED, LOW);
-      digitalWrite(redLED, LOW);
-      digitalWrite(yellowLED, LOW);
+    if(Serial.available()){
+        String command = Serial.readStringUntil('\n');
+     
+
+        if(command == "circle"){
+            digitalWrite(greenLED, HIGH);
+            digitalWrite(redLED, LOW);
+            digitalWrite(yellowLED, LOW);
+        } else if(command == "square"){
+            digitalWrite(greenLED, LOW);
+            digitalWrite(redLED, HIGH);
+            digitalWrite(yellowLED, LOW);
+        } else if(command == "triangle"){
+            digitalWrite(redLED, HIGH);
+            digitalWrite(greenLED, LOW);
+            digitalWrite(yellowLED, HIGH);
+        } else if(command == "none"){
+            digitalWrite(greenLED, LOW);
+            digitalWrite(redLED, LOW);
+            digitalWrite(yellowLED, LOW);
+        }
     }
-  }
 
-  delay(50); // Small delay for stability
+    delay(100); // Small delay for stability
 }
