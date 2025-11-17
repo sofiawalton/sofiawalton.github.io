@@ -1,3 +1,10 @@
+// This is a p5.js sketch that reads joystick values from an Arduino
+// and displays a shape on the canvas based on the joystick position.
+// It also sends the shape name back to the Arduino via serial communication.
+
+// Import the p5.serialport library
+import "p5.serialport";
+
 const BAUD_RATE = 9600; // This should match the baud rate in your Arduino sketch
 
 let port, connectBtn; // Declare global variables
@@ -22,7 +29,7 @@ function draw() {
   let str = port.readUntil("\n"); // Read from the port until the newline
   if (str.length == 0) return; // If we didn't read anything, return.
 
-  // trim the whitespace (the newline) and convert the string to a number
+  // Trim the whitespace (the newline) and convert the string to a number
   let values = str.trim().split(","); // Split the string into an array
   if (values.length < 2) return; // If we don't have two values, return
 
@@ -33,12 +40,13 @@ function draw() {
     const xPos = map(xValue, 0, 1023, 0, windowWidth);
     const yPos = map(yValue, 0, 1023, 0, windowHeight);
 
-    // Clear the background
+    // Make the background black and the fill white
     background("black");
     fill("white");
   
 
     let shape = "";
+
     if (xValue < 400) {
         fill("green");
         ellipse(xPos, yPos, 100, 100); // Draw circle
