@@ -41,13 +41,13 @@ function draw() {
     let shape = "";
     if (xValue < 400) {
         ellipse(xPos, yPos, 100, 100); // Draw circle
-        shape = "Circle";
+        shape = "circle";
     } else if (xValue < 700) {
         rect(xPos - 50, yPos - 50, 100, 100); // Draw square
-        shape = "Square";
+        shape = "square";
     } else {
         triangle(xPos, yPos - 50, xPos - 50, yPos + 50, xPos + 50, yPos + 50); // Draw triangle
-        shape = "Triangle";
+        shape = "triangle";
     }
 
     port.write(shape + "\n"); // Send the shape name back to Arduino
