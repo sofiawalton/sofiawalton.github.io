@@ -18,29 +18,30 @@
       <main>
         <section>
         <h2>Schematic</h2>
-        <img src="a5schem.png" class="Schematic.jpeg" />
+        <img src="a6schematic.png" class="Schematic.jpeg" />
         <p>Image of my schematic for the circuit & resistance calculation.</p>
         </section>
 
         <section>
           <h2>'Talking to the web!' Circuit Documentation</h2>
-          <img src="a5pic.jpeg" class="blink1.jpeg" />
+          <img src="a6pic.jpeg" class="blink1.jpeg" />
           <p>
-            This is my 'Higher Voltage!' circuit. The breadboard is connected to the Arduino with:
-        <ul>
-          <li>Red wire associated with yellow wire → pin 2</li>
-          <li>Red wrie associated with all resistors → pin 4</li>
-          <li>Red wire associated with green wire → pin 8</li>
-          <li>Red wire associated with orange wire → pin ~6</li>
-          <li>White wire connected to MOSFET → pin ~9</li>
-          <li>Black wire → GND</li>
-        </ul>
-        1M ohm resistors are placed next to the associated wires.
+            This is my 'Talking to the Web!' circuit. 
           </p>
         </section>
 
         <section>
-          <h2>Code</h2>
+          <h2>.ino code</h2>
+          <pre>
+            <code>
+           
+
+
+            </code></pre>
+          </section>
+
+          <section>
+          <h2>.js code</h2>
           <pre>
             <code>
            
@@ -52,10 +53,21 @@
           <section>
           <h2>Operation Video</h2>
            <video controls>
-            <source src='a5video.mp4' type="video/mp4" />
+            <source src='a6video.mp4' type="video/mp4" />
              Your browser does not support the video tag.
            </video>
             <p>Video of my circuit in action. </p>
+
+
+            <h3>Questions</h3>
+            <p>
+              I used Microsoft Co-Pilot to help me debug my code when I was trying to understand the functionality of the SW (pin) on the joystick.
+              Everytime I included code that had an else statement for the joystick's position when there would be no shapes, it didn't work. Microsoft Co-Pilot was unable
+              to help me understand why that was happening, so I ended up just removing that part of the code entirely and it worked. I would've liked to figure out 
+              how to make the joystick be at a resting state, but instead, my joystick starts in the square shape with the red LED on. I also used Co-Pilot to help me 
+              understand how to read serial commands from p5.js to the Arduino, which I was struggling with at first. 
+            </p>
+
       </main>
   </body>
 </html>

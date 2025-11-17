@@ -53,9 +53,7 @@ function draw() {
         shape = "triangle";
     }
 
-    // if(swState === 0){
-    //     shape = "none";
-    // }
+
 
     port.write(shape.toLowerCase() + "\n"); // Send the shape name back to Arduino
     

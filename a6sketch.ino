@@ -1,3 +1,5 @@
+// This code reads joystick input and controls three different LEDs based on serial commands from a connected computer
+
 const int Xpin = A0; // X-axis pin
 const int Ypin = A1; // Y-axis pin
 const int swPin = 2; // Joystick button pin
@@ -16,7 +18,7 @@ void setup() {
 
 
 void loop(){
-    // read joystick values
+    // Read joystick values
     int xValue = analogRead(Xpin); // Read X-axis value
     int yValue = analogRead(Ypin); // Read Y-axis value
     int swState = digitalRead(swPin); // Read button state
@@ -32,24 +34,19 @@ void loop(){
         command.trim(); // Remove any trailing newline or spaces
      
 
-        if(command == "circle"){
+        if(command == "circle"){ //Turns green LED on when the joystick in in the circle position
             digitalWrite(greenLED, HIGH);
             digitalWrite(redLED, LOW);
             digitalWrite(yellowLED, LOW);
-        } else if(command == "square"){
+        } else if(command == "square"){ //Turns red LED on when the joystick in in the square position
             digitalWrite(greenLED, LOW);
             digitalWrite(redLED, HIGH);
             digitalWrite(yellowLED, LOW);
-        } else if(command == "triangle"){
+        } else if(command == "triangle"){ //Turns yellow LED on when the joystick in in the triangle position
             digitalWrite(redLED, LOW);
             digitalWrite(greenLED, LOW);
             digitalWrite(yellowLED, HIGH);
-        } else if(command == "none"){
-            digitalWrite(greenLED, LOW);
-            digitalWrite(redLED, LOW);
-            digitalWrite(yellowLED, LOW);
         }
     }
-
-    delay(100); // Small delay for stability
+    delay(50); // Small delay for stability
 }
