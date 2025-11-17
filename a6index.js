@@ -34,8 +34,9 @@ function draw() {
     const yPos = map(yValue, 0, 1023, 0, windowHeight);
 
     // Clear the background
-    background("lightgrey");
-    FileList("white");
+    background("black");
+    fill("white");
+  
 
     let shape = "";
     if (xValue < 341) {
@@ -52,7 +53,7 @@ function draw() {
     port.write(shape + "\n"); // Send the shape name back to Arduino
     
     // Display the shape name
-    fill("black");
+    fill("white");
     text(shape, windowWidth / 2, 50);
 }
 // Three helper functions for managing the serial connection.

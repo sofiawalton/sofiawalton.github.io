@@ -2,9 +2,9 @@ const int Xpin = A0; // X-axis pin
 const int Ypin = A1; // Y-axis pin
 const int swPin = 2; // Joystick button pin
 
-const int greenLED = 9; // Green LED pin
-const int redLED = 10; // Red LED pin
-const int yellowLED = 11; // Yellow LED pin
+const int greenLED = 8; // Green LED pin
+const int redLED = 12; // Red LED pin
+const int yellowLED = 4; // Yellow LED pin
 
 void setup() {
   Serial.begin(9600);
