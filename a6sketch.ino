@@ -44,9 +44,12 @@ void loop(){
             digitalWrite(redLED, LOW);
             digitalWrite(greenLED, LOW);
             digitalWrite(yellowLED, HIGH);
-        } 
-        
+        } else if(command == "none"){
+            digitalWrite(greenLED, LOW);
+            digitalWrite(redLED, LOW);
+            digitalWrite(yellowLED, LOW);
+        }
     }
 
-    delay(50); // Small delay for stability
+    delay(100); // Small delay for stability
 }
