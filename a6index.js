@@ -57,7 +57,7 @@ function draw() {
         shape = "none";
     }
 
-    port.write(shape + "\n"); // Send the shape name back to Arduino
+    port.write(shape.toLowerCase() + "\n"); // Send the shape name back to Arduino
     
     // Display the shape name
     fill("white");
