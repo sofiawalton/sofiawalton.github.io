@@ -39,14 +39,14 @@ function draw() {
   
 
     let shape = "";
-    if (xValue < 341) {
+    if (xValue < 400) {
         ellipse(xPos, yPos, 100, 100); // Draw circle
         shape = "Circle";
-    } else if (xValue < 682) {
+    } else if (xValue < 700) {
         rect(xPos - 50, yPos - 50, 100, 100); // Draw square
         shape = "Square";
     } else {
-        triangle(xPos, yPos - 58, xPos - 50, yPos + 29, xPos + 50, yPos + 29); // Draw triangle
+        triangle(xPos, yPos - 50, xPos - 50, yPos + 50, xPos + 50, yPos + 50); // Draw triangle
         shape = "Triangle";
     }
 
@@ -54,7 +54,7 @@ function draw() {
     
     // Display the shape name
     fill("white");
-    text(shape, windowWidth / 2, 50);
+    text(`Shape: ${shape}`, windowWidth / 2, 50);
 }
 // Three helper functions for managing the serial connection.
 
