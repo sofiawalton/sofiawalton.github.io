@@ -41,14 +41,11 @@ void loop(){
             digitalWrite(redLED, HIGH);
             digitalWrite(yellowLED, LOW);
         } else if(command == "triangle"){
-            digitalWrite(redLED, HIGH);
+            digitalWrite(redLED, LOW);
             digitalWrite(greenLED, LOW);
             digitalWrite(yellowLED, HIGH);
-        } else if(command == "none"){
-            digitalWrite(greenLED, LOW);
-            digitalWrite(redLED, LOW);
-            digitalWrite(yellowLED, LOW);
-        }
+        } 
+        
     }
 
     delay(100); // Small delay for stability
