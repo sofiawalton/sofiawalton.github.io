@@ -48,5 +48,5 @@ void loop(){
         
     }
 
-    delay(100); // Small delay for stability
+    delay(50); // Small delay for stability
 }

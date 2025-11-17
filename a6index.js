@@ -42,12 +42,15 @@ function draw() {
     if (xValue < 400) {
         ellipse(xPos, yPos, 100, 100); // Draw circle
         shape = "circle";
+        fill("green");
     } else if (xValue < 700) {
         rect(xPos - 50, yPos - 50, 100, 100); // Draw square
         shape = "square";
+        fill("red");
     } else {
         triangle(xPos, yPos - 50, xPos - 50, yPos + 50, xPos + 50, yPos + 50); // Draw triangle
         shape = "triangle";
+        fill("yellow");
     }
 
     port.write(shape + "\n"); // Send the shape name back to Arduino
