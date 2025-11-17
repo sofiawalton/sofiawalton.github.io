@@ -16,6 +16,7 @@ void setup() {
 
 
 void loop(){
+    // read joystick values
     int xValue = analogRead(Xpin); // Read X-axis value
     int yValue = analogRead(Ypin); // Read Y-axis value
     int swState = digitalRead(swPin); // Read button state
@@ -28,6 +29,7 @@ void loop(){
 
     if(Serial.available()){
         String command = Serial.readStringUntil('\n');
+        command.trim(); // Remove any trailing newline or spaces
      
 
         if(command == "circle"){
