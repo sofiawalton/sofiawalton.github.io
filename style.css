@@ -21,7 +21,7 @@ svg {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Stack Sans Headline", sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   max-width: 1000px;
@@ -36,19 +36,25 @@ section {
 }
 
 h1, h2 {
+  font-family: "Stack Sans Headline" , sans-serif;
+  font-weight: bold;
   color: #1e3a8a;
 }
 
 .header {
   display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
   gap: 1em;
   margin-top: 1em;
   border-bottom: 2px solid #e0e7ff;
   padding-bottom: 1em;
+  text-align: center;
 }
 
 .header img {
-  width: 50%;
+  max-width: 400px;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
